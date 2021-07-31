@@ -1,7 +1,4 @@
-import os
 from enum import Enum
-
-PROJECT_DIR_PATH = "{}{}".format(((os.path.dirname(os.path.abspath(__file__))).partition("Lichess"))[0], "Lichess")
 
 
 class Color(Enum):

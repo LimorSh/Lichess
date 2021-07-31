@@ -7,14 +7,11 @@ import zipfile
 from http import HTTPStatus
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import Select, WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import Select
 
 # inner classes
 from classes import consts
-from classes.logger import logger
+from Utils.logger import logger
 
 
 class ChromeDriver:

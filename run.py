@@ -1,10 +1,10 @@
 # third-party libraries
 import argparse
+import os
 import sys
 
 # inner classes
-import consts
-sys.path.append(consts.PROJECT_DIR_PATH)
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from services.Lichess import Lichess    # noqa
 
 
