@@ -15,8 +15,8 @@ def run_program(param1=None, param2=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("username", help="your Lichess username")
-    parser.add_argument("password", help="your Lichess password")
+    parser.add_argument("-u", "--username", help="your Lichess username", required=True)
+    parser.add_argument("-p", "--password", help="your Lichess password", required=True)
     args = parser.parse_args()
 
     username = args.username
