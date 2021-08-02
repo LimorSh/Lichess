@@ -11,7 +11,7 @@ from selenium.webdriver.support.ui import Select
 
 # inner classes
 from classes import consts
-from Utils.logger import logger
+from utils.logger import logger
 
 
 class ChromeDriver:

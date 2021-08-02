@@ -6,7 +6,7 @@ from selenium.common.exceptions import TimeoutException
 
 # inner classes
 from classes.ChromeDriver import ChromeDriver
-from Utils.logger import logger
+from utils.logger import logger
 from services import consts
 
 
