@@ -94,6 +94,8 @@ class ChromeDriver:
     def send_login_info(self, username: str, password: str, user_elem_id: str, password_elem_id: str):
         username_elem = self._driver.find_element_by_id(user_elem_id)
         password_elem = self._driver.find_element_by_id(password_elem_id)
+        username_elem.clear()
+        password_elem.clear()
         username_elem.send_keys(username)
         password_elem.send_keys(password)
 
@@ -106,15 +108,31 @@ class ChromeDriver:
                      "Actual url: {}".format(actual_url))
         return False
 
+    def is_wrong_username_password(self, error_msg: str, class_name_error: str) -> bool:
+        errors_elem = self._driver.find_elements_by_class_name(class_name_error)
+        if any(error_msg in e.text for e in errors_elem):
+            return True
+        return False
+
     def find_element_by_id(self, elem_id: str):
         return self._driver.find_element_by_id(elem_id)
 
     def find_element_by_name(self, name: str):
         return self._driver.find_element_by_name(name)
 
+    def find_element_by_link_text(self, text: str):
+        return self._driver.find_element_by_link_text(text)
+
+    def find_elements_by_class_name(self, class_name: str):
+        return self._driver.find_elements_by_class_name(class_name)
+
     def select_elem_by_visible_text(self, elem_id: str, text: str):
         elem = Select(self.find_element_by_id(elem_id))
         elem.select_by_visible_text(text)
+
+    def click_button_by_id(self, elem_id: str):
+        button = self.find_element_by_id(elem_id)
+        button.click()
 
     def click_button_by_xpath(self, xpath: str):
         button = self._driver.find_elements_by_xpath(xpath)[0]

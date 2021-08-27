@@ -37,7 +37,14 @@ class Lichess:
             self._driver.click_button_by_xpath(consts.LOGIN_BUTTON_XPATH)
             time.sleep(consts.DELAY_SEC)
 
-            return self._driver.verify_login(consts.MAIN_WEBSITE)
+            if self._driver.verify_login(consts.MAIN_WEBSITE):
+                return True
+
+            if self._driver.is_wrong_username_password(consts.LOGIN_ERROR_MSG, consts.LOGIN_CLASS_NAME_ERROR):
+                logger.error("Wrong username or password.\nExiting...")
+                self._driver.quit()
+                sys.exit()
+            return False
 
         except TimeoutException:
             logger.error("The page wasn't loaded yet.")
@@ -46,11 +53,21 @@ class Lichess:
         return False
 
     def _setting_blind_mode_pref(self):
+        self._set_blindfold_option()
+        self._set_sound_speech()
+
+    def _set_blindfold_option(self):
         self._driver.get(consts.GAME_PREFERENCES_URL)
         time.sleep(consts.DELAY_SEC)
-
         self._driver.elem_execute_script_by_id("irdisplay_blindfold_1", consts.EXE_SCRIPT_CHECKED, "true")
         self._driver.elem_execute_script_by_id("irdisplay_blindfold_0", consts.EXE_SCRIPT_CHECKED, "false")
+
+    def _set_sound_speech(self):
+        self._driver.click_button_by_id("user_tag")
+        time.sleep(consts.DELAY_SEC)
+        self._driver.click_button_by_xpath(consts.BUTTON_SOUND_XPATH)
+        time.sleep(consts.DELAY_SEC)
+        self._driver.click_button_by_xpath(consts.BUTTON_SPEECH_XPATH)
 
     def _create_game(self):
         self._driver.get(consts.GAME_SETUP_URL)

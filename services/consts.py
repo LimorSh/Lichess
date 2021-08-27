@@ -54,6 +54,12 @@ USERNAME_ELEM_ID = "form3-username"
 PASSWORD_ELEM_ID = "form3-password"
 
 LOGIN_BUTTON_XPATH = '//*[@id="main-wrap"]/main/form/div[1]/button'
+LOGIN_ERROR_MSG = "Invalid username or password"
+LOGIN_CLASS_NAME_ERROR = "error"
+
+BUTTON_TEXT_XPATH = '//button[text()="{}"]'
+BUTTON_SOUND_XPATH = BUTTON_TEXT_XPATH.format("Sound")
+BUTTON_SPEECH_XPATH = BUTTON_TEXT_XPATH.format("Speech")
 
 SCRIPT_LINE = "arguments[0].setAttribute('{}',arguments[1])"
 EXE_SCRIPT_CHECKED = SCRIPT_LINE.format("checked")
